@@ -14,30 +14,36 @@ To run this program, you can use Remix, an online Solidity IDE. To get started, 
 
 Once you are on the Remix website, create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g., MyToken.sol). Copy and paste the following code into the file:
 
-// SPDX-License-Identifier: MIT
-pragma solidity 0.8.18;
+// SPDX-License-Identifier: GPL-3.0
 
-contract MyToken {
+pragma solidity >=0.8.2 <0.9.0;
 
-    // public variables here
-    string public tokenName="CAT";
-    string public tokenAbbrv="MEOW";
-    uint public totalSupply=0;
-    // mapping variable here
-    mapping(address=>uint) public balances;
-    // mint function
-    function mint(address _address,uint _value) public {
-        totalSupply+=_value;
-        balances[_address]+=_value;
+contract MyToken{
+
+    string public Token_Name="od";
+    string public Token_Abbrv="od";
+    uint public Total_Supply=0;
+
+
+
+    mapping (address=>uint) public balances;
+
+    function mint(address _to,uint _value) public {
+        
+        Total_Supply+=_value;
+        balances[_to]+=_value;
+
     }
-    // burn function
-    function burn(address _address,uint _value) public {
-        if(balances[_address]>=_value){
-            totalSupply-=_value;
-            balances[_address]-=_value;
+
+    function burn(address _from,uint _value)public{
+        
+        if(balances[_from]>=_value){
+        Total_Supply-=_value;
+        balances[_from]-=_value;
         }
-    }
+       
 
+    }
 }
 
 
